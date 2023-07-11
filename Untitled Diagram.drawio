@@ -1,9 +1,33 @@
-<mxfile host="app.diagrams.net" modified="2023-07-11T14:01:27.897Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.67" version="21.6.1" etag="UJ5wHUuXIxpa0p-NHyS8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-07-11T14:11:36.308Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.67" etag="c7GaFzMcF9zXQh15dZfA" version="21.6.1" type="github">
   <diagram name="Page-1" id="Rot3NmqBR7vJRGLnLxXS">
-    <mxGraphModel>
+    <mxGraphModel dx="880" dy="494" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="p7AxjXVlDG6ieA0X_D2H-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="p7AxjXVlDG6ieA0X_D2H-1" target="p7AxjXVlDG6ieA0X_D2H-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7AxjXVlDG6ieA0X_D2H-1" value="Front-end" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="70" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p7AxjXVlDG6ieA0X_D2H-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="p7AxjXVlDG6ieA0X_D2H-3" target="p7AxjXVlDG6ieA0X_D2H-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7AxjXVlDG6ieA0X_D2H-3" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="115" y="40" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p7AxjXVlDG6ieA0X_D2H-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="p7AxjXVlDG6ieA0X_D2H-8" target="p7AxjXVlDG6ieA0X_D2H-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7AxjXVlDG6ieA0X_D2H-8" value="MindsDB" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="260" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p7AxjXVlDG6ieA0X_D2H-10" value="APIs" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="470" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p7AxjXVlDG6ieA0X_D2H-13" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;APIs exposed by an external provider such as OpenAI. The response would be given by a model.&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="470" y="260" width="120" height="90" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
