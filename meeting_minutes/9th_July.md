@@ -1,39 +1,54 @@
-# Meeting Minutes
+---
 
-**Attendees:** Penn, Sebastian
+**Meeting Details:**
 
-**Date:** 9th July 2023, Sunday
+- Date: 9th July 2023, Sunday
+- Time: 1300 WAT
 
-**Time:** 1300 WAT
+**Attendees:** 
 
-## Agenda
+- Penn - Front-end
+- Sebastian - Back-end
 
-1. Initial self-introduction
-2. Ideas shared
-3. Resources shared
+**Agenda Review:**
 
-## Meeting Details
+- Self-introduction
+- Sharing ideas
 
-### Initial Self Introduction
+**Meeting Summary:**
 
-- Participants introduced themselves, shared the following information:
-    - How to address each other's names
-    - Country, timezone, language
-    - Current tech stacks and areas of experience
+- Self-introduction:
+    - Address each other's names, shared details such as country, timezone, language, current tech stacks and areas of experience
+- Ideas Shared:
+    - Chatbot for mental health by Sebastian
+    - Chatbot for coding assistance by Penn
 
-### Ideas Shared
+**Action Items:**
 
-1. Chatbot for mental health
-2. Chatbot for coding assistance
+- Prepare meeting minutes format - Assigned to Seb - Deadline: 11th July
+- Research for more ideas - Assigned to Penn - Deadline: 11th July
 
-### Resources Shared
+**Decisions and Resolutions:**
 
+- Fix ideas, & start with the project by next meeting mentioned below
 
-
-## Additional Information
+**Additional Notes:** (not specific to agenda items) 
 
 - [Kunal Kushwaha](https://www.youtube.com/c/kunalkushwaha)
 - [WeMakeDevs](https://wemakedevs.org/)
 - [Hashnode](https://hashnode.com/)
 - [Rix](https://hashnode.com/rix?source=nav)
 
+**Next Meeting and Adjournment:**
+
+- Date: 11th July
+- Time: 1400 WAT
+- Expected End Time: 1500 WAT
+
+**Review and Distribution:**
+
+- Please review the minutes for accuracy and clarity.
+
+**Archive:**
+
+- Store the minutes in the designated archive folder.
