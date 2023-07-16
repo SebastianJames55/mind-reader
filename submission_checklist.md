@@ -1,1 +1,0 @@
-- [Notes for quick reference](https://docs.google.com/document/d/1Kzqg4lyQfeKj0JlYseAoTHpWlFvCInm-v72zGA_8oJc/edit?usp=sharing)
