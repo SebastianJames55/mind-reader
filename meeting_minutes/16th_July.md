@@ -17,14 +17,18 @@
 
 **Action Items:**
 
-- Design UI by Penn by 
-- 
+- Design & implementing UI by Penn by 21st July
+- Linking front-end to back-end by Penn
+- Deciding the engine & model for the use case by Seb by 19th July
+- Pass request (name, chat text) to mindsdb by Seb by 22nd July
+- Python coding guidelines by Seb
 
 **Decisions and Resolutions:**
-
+- Tasks defined & assigned, along with deadlines
+- Review progress, & keep each other in check
 
 **Additional Notes:** (not specific to agenda items) 
-
+- few others are working on similar idea, saw it in questions channel
 
 **Next Meeting:**
 
