@@ -13,9 +13,12 @@
 
 **Meeting Summary:**
 
+- Broke down the project into tasks in terms of front-end, back-end by referring to Snoopstein chatbot example in detail. 
 
 **Action Items:**
 
+- Design UI by Penn by 
+- 
 
 **Decisions and Resolutions:**
 
@@ -25,7 +28,7 @@
 
 **Next Meeting:**
 
-- Date:  July
+- Date: 19th July
 - Time: 1400 WAT
 - Expected End Time: 1500 WAT
 
