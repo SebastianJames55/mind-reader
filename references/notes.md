@@ -5,6 +5,12 @@
 **Implementation**
 - Initially we can try with Andrew Huberman or Mother Theresa to understand how to get response similar to the case of Snoopstein.
 - Get an eye catching but minimal front-end ready  
+
+**To-do**
+- Decide which tools to use. eg: IDE
+  - Consider front-end & back-end
+- Update meeting minutes
+  - consider to include meeting end time
   
   
 - [Notes for quick reference](https://docs.google.com/document/d/1Kzqg4lyQfeKj0JlYseAoTHpWlFvCInm-v72zGA_8oJc/edit?usp=sharing)
