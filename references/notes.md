@@ -1,19 +1,26 @@
 **Ideation**
+
 - The chatbot should have a personality. We can refer how snoopstein chatbot was done.
 - We can provide an option to customize the personality. 
 
-
 **Implementation**
+
 - Initially we can try with Andrew Huberman or Mother Theresa to understand how to get response similar to the case of Snoopstein.
 - Get an eye catching but minimal front-end ready  
 
 **To-do**
+
 - Decide which tools to use. eg: IDE
   - Consider front-end & back-end
 - Update meeting minutes
   - consider to include meeting end time
+ 
+**Features**
+
+- Loading of chat history
 
 **Future Scope** 
+
 - _Tech upgrade_: 
   - Monolithic arch to microservice migration 
 - _Features to consider_:
