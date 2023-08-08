@@ -1,5 +1,6 @@
 from models.base_model import BaseModel
 
+
 class MindsDBModel(BaseModel):
     def __init__(self):
         pass

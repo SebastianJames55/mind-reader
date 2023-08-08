@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, g, Blueprint
 from flask_restx import Api, Resource
+
 import config
-from connectors.base_connector import BaseConnector
-from models.base_model import BaseModel
+import constants
 from connectors import MindsDBConnector
 from models import MindsDBModel
 
@@ -12,18 +12,18 @@ app = Flask(__name__)
 # Function to get the connector based on the specified app in config.py
 def get_connector():
     # Create a connector based on the specified app in config.py
-    if config.APP_TO_CONNECT == 'mindsdb':
+    if config.APP_TO_CONNECT == constants.MINDSDB:
         return MindsDBConnector()
     else:
-        raise ValueError("Invalid app specified in config.py")
+        raise ValueError(constants.INVALID_APP_MESSAGE)
 
 
 # Function to get the model based on the specified app in config.py
 def get_model():
-    if config.APP_TO_CONNECT == 'mindsdb':
+    if config.APP_TO_CONNECT == constants.MINDSDB:
         return MindsDBModel()
     else:
-        raise ValueError("Invalid app specified in config.py")
+        raise ValueError(constants.INVALID_APP_MESSAGE)
 
 
 @app.before_request
@@ -51,18 +51,8 @@ class Predict(Resource):
         Make a prediction
         """
         try:
-            # Assuming you have some data to predict, replace data with the actual data
-            data = {
-                'feature1': 10,
-                'feature2': 20,
-                # Add more features here as needed
-            }
-
-            # Connect to the app using the connector
-            g.connector.connect()
-
-            # Train the model (optional, depending on the app)
-            g.model.train(data)
+            # Data to predict
+            data = "why is gravity so different on the sun?"
 
             # Make predictions using the connector and model
             prediction = g.connector.predict(data)
