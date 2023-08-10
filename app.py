@@ -1,3 +1,5 @@
+import logging
+
 from flask import Flask, jsonify, g, Blueprint
 from flask_restx import Api, Resource
 
@@ -7,12 +9,17 @@ from connectors import MindsDBConnector
 from models import MindsDBModel
 
 app = Flask(__name__)
+# Set up logging configuration
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+# Create a logger for your module
+logger = logging.getLogger(__name__)
 
 
 # Function to get the connector based on the specified app in config.py
 def get_connector():
     # Create a connector based on the specified app in config.py
     if config.APP_TO_CONNECT == constants.MINDSDB:
+        logger.debug('Choosing mindsdb app')
         return MindsDBConnector()
     else:
         raise ValueError(constants.INVALID_APP_MESSAGE)

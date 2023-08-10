@@ -1,3 +1,6 @@
+import logging
+import os
+
 import mindsdb_sdk
 
 from connectors.base_connector import BaseConnector
@@ -14,7 +17,8 @@ DB_CONNECTION_ARGS = {
 
 
 def get_mindsdb_connection():
-    return mindsdb_sdk.connect('https://cloud.mindsdb.com', login='sj9847721480@gmail.com', password='mindsdbSJ123#')
+    logging.debug('Connecting to mindsdb app')
+    return mindsdb_sdk.connect()
 
 
 def create_database(db_name):
@@ -26,6 +30,7 @@ def create_database(db_name):
             name=db_name,
             connection_args=DB_CONNECTION_ARGS
         )
+        logging.debug('Creating database')
         return mysql_demo_db
 
 
@@ -33,6 +38,7 @@ def get_database(db_name):
     # Get the connection lazily
     server = get_mindsdb_connection()
     if db_name in server.list_databases():
+        logging.debug('Fetching database')
         return server.get_database(db_name)
 
 
@@ -40,6 +46,7 @@ def drop_database(db_name):
     # Get the connection lazily
     server = get_mindsdb_connection()
     if db_name in server.list_databases():
+        logging.debug('Dropping database')
         server.drop_database(db_name)
 
 
@@ -47,6 +54,7 @@ PROJECT_NAME = 'mind_reader_project'
 
 
 def get_project_names(server):
+    logging.debug('Fetching projects')
     return [project.name for project in server.list_projects()]
 
 
@@ -55,6 +63,7 @@ def create_project(project_name):
     server = get_mindsdb_connection()
     if project_name not in get_project_names(server):
         project = server.create_project(project_name)
+        logging.debug('Creating project')
         return project
 
 
@@ -62,6 +71,7 @@ def get_project(project_name):
     # Get the connection lazily
     server = get_mindsdb_connection()
     if project_name in get_project_names(server):
+        logging.debug('Fetching project')
         return server.get_project(project_name)
 
 
@@ -69,14 +79,17 @@ def drop_project(project_name):
     # Get the connection lazily
     server = get_mindsdb_connection()
     if project_name in get_project_names(server):
+        logging.debug('Dropping project')
         server.drop_project(project_name)
 
 
 MODEL_ENGINE = 'openai'
 MODEL_NAME = 'gpt-4'
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
 
 def get_model_names(project):
+    logging.debug('Fetching models')
     return [model.name for model in project.list_models()]
 
 
@@ -91,9 +104,11 @@ def create_model(project_name, model_name):
                 'model_name': MODEL_NAME,
                 'prompt_template': '''
         respond to {{text}} by {{author_username}}
-                    '''
+                    ''',
+                'api_key': OPENAI_API_KEY
             }
         )
+        logging.debug('Creating model')
         return model
 
 
@@ -105,12 +120,14 @@ def is_model_created(project_name, model_name):
 def get_model(project_name, model_name):
     project = get_project(project_name)
     if model_name in get_model_names(project):
+        logging.debug('Fetching model')
         return project.get_model(model_name)
 
 
 def drop_model(project_name, model_name):
     project = get_project(project_name)
     if model_name in get_model_names(project):
+        logging.debug('Dropping model')
         project.drop_model(model_name)
 
 
@@ -130,6 +147,7 @@ class MindsDBConnector(BaseConnector):
         pass
 
     def predict(self, data):
+        logging.debug('Sending data for prediction')
         prediction_query = f'''
             SELECT response
             FROM {PROJECT_NAME}.{self.model_name}
