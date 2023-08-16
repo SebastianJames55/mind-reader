@@ -5,6 +5,17 @@ import mindsdb_sdk
 
 from connectors.base_connector import BaseConnector
 
+# os.environ['REQUESTS_CA_BUNDLE'] = os.path.join(os.path.dirname(__file__), 'path/to/cacert.pem')
+
+EMAIL = os.environ.get('MINDSDB_EMAIL')
+PASSWORD = os.environ.get('MINDSDB_PASSWORD')
+
+
+def get_mindsdb_connection():
+    logging.debug('Connecting to mindsdb app')
+    return mindsdb_sdk.connect()
+
+
 DB_ENGINE = 'mysql'
 DB_NAME = 'mysql_demo_db'
 DB_CONNECTION_ARGS = {
@@ -14,11 +25,6 @@ DB_CONNECTION_ARGS = {
     "port": "3306",
     "database": "public"
 }
-
-
-def get_mindsdb_connection():
-    logging.debug('Connecting to mindsdb app')
-    return mindsdb_sdk.connect()
 
 
 def create_database(db_name):
@@ -65,6 +71,8 @@ def create_project(project_name):
         project = server.create_project(project_name)
         logging.debug('Creating project')
         return project
+    else:
+        return get_project(project_name)
 
 
 def get_project(project_name):
@@ -84,7 +92,7 @@ def drop_project(project_name):
 
 
 MODEL_ENGINE = 'openai'
-MODEL_NAME = 'gpt-4'
+MODEL_NAME = 'text-davinci-003'
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
 
@@ -94,22 +102,24 @@ def get_model_names(project):
 
 
 def create_model(project_name, model_name):
-    project = get_project(project_name)
-    if model_name not in get_model_names(project):
+    if not is_model_created(project_name, model_name):
+        project = get_project(project_name)
         model = project.create_model(
             name=model_name,
             predict='response',
             engine=MODEL_ENGINE,
             options={
                 'model_name': MODEL_NAME,
+                'api_key': OPENAI_API_KEY,
                 'prompt_template': '''
         respond to {{text}} by {{author_username}}
-                    ''',
-                'api_key': OPENAI_API_KEY
+                    '''
             }
         )
         logging.debug('Creating model')
         return model
+    else:
+        return get_model(project_name, model_name)
 
 
 def is_model_created(project_name, model_name):
@@ -132,7 +142,6 @@ def drop_model(project_name, model_name):
 
 
 class MindsDBConnector(BaseConnector):
-    # mysql_demo_db = create_database(DB_NAME)
     project = create_project(PROJECT_NAME)
     model_name = 'gpt_model'
     model = create_model(PROJECT_NAME, model_name=model_name)

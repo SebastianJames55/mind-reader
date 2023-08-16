@@ -1,7 +1,7 @@
 import logging
 
-from flask import Flask, jsonify, g, Blueprint
-from flask_restx import Api, Resource
+from flask import Flask, jsonify, g, Blueprint, request
+from flask_restx import Api, Resource, fields
 
 import config
 import constants
@@ -43,28 +43,41 @@ def before_request():
 # Create a versioned API Blueprint
 api_v1 = Blueprint('api_v1', __name__, url_prefix='/api/v1')
 
-# Initialize Flask-RESTPlus Api object
+# Initialize Flask-RESTx Api object
 api = Api(api_v1, version='1.0', title='Mind Reader API', description='API for the Mind Reader backend')
 
 # Define a namespace for the API
 ns = api.namespace('predict', description='Prediction operations')
 
+resource_model = ns.model('ResourceModel', {
+    'request_message': fields.String(description='Message to get reply to', required=True),
+})
+
+# Define a model for the response data
+response_model = ns.model('ResponseModel', {
+    'response_message': fields.String(description='Reply from chatbot')
+})
+
 
 @ns.route('/')
 class Predict(Resource):
     @api.doc('predict')
+    @ns.expect(resource_model, validate=True)
+    @ns.response(200, 'Success', response_model)
     def post(self):
         """
         Make a prediction
         """
         try:
             # Data to predict
-            data = "why is gravity so different on the sun?"
+            data = ns.payload
+            request_message = data.get('request_message')
 
             # Make predictions using the connector and model
-            prediction = g.connector.predict(data)
-
-            return jsonify(prediction)
+            prediction = g.connector.predict(request_message)
+            print(prediction)
+            message = {'response_message': 'Hello, world!'}
+            return message, 200
 
         except Exception as e:
             # Graceful error handling
@@ -76,4 +89,6 @@ class Predict(Resource):
 app.register_blueprint(api_v1)
 
 if __name__ == '__main__':
+    app.logger.setLevel(logging.DEBUG)
+    app.logger.addHandler(logging.StreamHandler())
     app.run(debug=True)
