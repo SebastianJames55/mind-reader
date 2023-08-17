@@ -2,6 +2,7 @@ import logging
 
 from flask import Flask, jsonify, g, Blueprint, request
 from flask_restx import Api, Resource, fields
+import pandas as pd
 
 import config
 import constants
@@ -55,7 +56,7 @@ resource_model = ns.model('ResourceModel', {
 
 # Define a model for the response data
 response_model = ns.model('ResponseModel', {
-    'response_message': fields.String(description='Reply from chatbot')
+    'response': fields.String(description='Reply from chatbot')
 })
 
 
@@ -75,9 +76,8 @@ class Predict(Resource):
 
             # Make predictions using the connector and model
             prediction = g.connector.predict(request_message)
-            print(prediction)
-            message = {'response_message': 'Hello, world!'}
-            return message, 200
+            prediction_dict = prediction.to_dict(orient='records')
+            return prediction_dict, 200
 
         except Exception as e:
             # Graceful error handling
