@@ -4,16 +4,12 @@ import os
 import mindsdb_sdk
 
 from connectors.base_connector import BaseConnector
-
-# os.environ['REQUESTS_CA_BUNDLE'] = os.path.join(os.path.dirname(__file__), 'path/to/cacert.pem')
-
-EMAIL = os.environ.get('MINDSDB_EMAIL')
-PASSWORD = os.environ.get('MINDSDB_PASSWORD')
+import config
 
 
 def get_mindsdb_connection():
     logging.debug('Connecting to mindsdb app')
-    return mindsdb_sdk.connect()
+    return mindsdb_sdk.connect(login=config.EMAIL, password=config.PASSWORD)
 
 
 DB_ENGINE = 'mysql'
@@ -110,7 +106,7 @@ def create_model(project_name, model_name):
             engine=MODEL_ENGINE,
             options={
                 'model_name': MODEL_NAME,
-                'api_key': OPENAI_API_KEY,
+                # 'api_key': OPENAI_API_KEY,
                 'prompt_template': '''
         respond to {{text}} by {{author_username}}
                     '''
