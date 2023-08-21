@@ -1,5 +1,8 @@
-# mind-reader
-Submission for HackerMinds AI App Challenge hosted by MindsDB in July 2023.
+# Local Setup
+- Create venv (recommended) & install the dependencies
+- Run the app
+- Navigate to ```/api/v1/predict``` & enter a text
 
-## Documentation
-We've included API documentation for the ```/api/v1/predict endpoint``` using Flask-RESTx. The Swagger documentation will be available at ```/api/v1/swagger.json``` or ```/api/v1/``` when you run the application.
+### Additional Info
+- API documentation included for the ```/api/v1/predict``` endpoint using Flask-RESTx. 
+- The Swagger documentation will be available at ```/api/v1/swagger.json``` or ```/api/v1/``` when you run the application.
