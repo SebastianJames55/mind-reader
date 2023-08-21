@@ -1,8 +1,7 @@
 import logging
 
-from flask import Flask, jsonify, g, Blueprint, request
+from flask import Flask, jsonify, g, Blueprint
 from flask_restx import Api, Resource, fields
-import pandas as pd
 
 import config
 import constants

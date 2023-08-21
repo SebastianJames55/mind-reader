@@ -4,13 +4,11 @@ import os
 import mindsdb_sdk
 
 from connectors.base_connector import BaseConnector
-import config
 
 
 def get_mindsdb_connection():
     logging.debug('Connecting to mindsdb app')
-    return mindsdb_sdk.connect(login=config.EMAIL, password=config.PASSWORD)
-
+    return mindsdb_sdk.connect()
 
 DB_ENGINE = 'mysql'
 DB_NAME = 'mysql_demo_db'
@@ -51,7 +49,6 @@ def drop_database(db_name):
         logging.debug('Dropping database')
         server.drop_database(db_name)
 
-
 PROJECT_NAME = 'mind_reader_project'
 
 
@@ -78,7 +75,6 @@ def get_project(project_name):
         logging.debug('Fetching project')
         return server.get_project(project_name)
 
-
 def drop_project(project_name):
     # Get the connection lazily
     server = get_mindsdb_connection()
@@ -86,11 +82,9 @@ def drop_project(project_name):
         logging.debug('Dropping project')
         server.drop_project(project_name)
 
-
 MODEL_ENGINE = 'openai'
 MODEL_NAME = 'text-davinci-003'
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
-
 
 def get_model_names(project):
     logging.debug('Fetching models')
@@ -106,10 +100,14 @@ def create_model(project_name, model_name):
             engine=MODEL_ENGINE,
             options={
                 'model_name': MODEL_NAME,
-                # 'api_key': OPENAI_API_KEY,
+                'api_key': OPENAI_API_KEY,
                 'prompt_template': '''
-        respond to {{text}} by {{author_username}}
-                    '''
+                Reply like a friend who cares and wants to help.
+                Input message: {{text}} 
+                In less than 550 characters, when there's some sign of distress provide a  Share healthy habits, motivational quotes, inspirational
+                real-life stories. Provide options to seek out in-person help if you aren't able to satisfy.  
+                    ''',
+                'max_tokens': 300
             }
         )
         logging.debug('Creating model')
@@ -156,8 +154,7 @@ class MindsDBConnector(BaseConnector):
         prediction_query = f'''
             SELECT response
             FROM {PROJECT_NAME}.{self.model_name}
-            WHERE author_username = "mindsdb"
-            AND text = "{data}";
+            WHERE text = "{data}";
         '''
         # Query on the model in the project to make predictions based on data
         query = self.project.query(prediction_query)
