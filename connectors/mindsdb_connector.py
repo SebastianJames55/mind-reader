@@ -10,12 +10,13 @@ def get_mindsdb_connection():
     logging.debug('Connecting to mindsdb app')
     return mindsdb_sdk.connect()
 
+
 DB_ENGINE = 'mysql'
 DB_NAME = 'mysql_demo_db'
 DB_CONNECTION_ARGS = {
     "user": "user",
-    "password": "MindsDBUser123!",
-    "host": "db-demo-data.cwoyhfn6bzs0.us-east-1.rds.amazonaws.com",
+    "password": "example",
+    "host": "db-demo-data.example.us-east-1.rds.amazonaws.com",
     "port": "3306",
     "database": "public"
 }
@@ -49,6 +50,7 @@ def drop_database(db_name):
         logging.debug('Dropping database')
         server.drop_database(db_name)
 
+
 PROJECT_NAME = 'mind_reader_project'
 
 
@@ -75,6 +77,7 @@ def get_project(project_name):
         logging.debug('Fetching project')
         return server.get_project(project_name)
 
+
 def drop_project(project_name):
     # Get the connection lazily
     server = get_mindsdb_connection()
@@ -82,9 +85,11 @@ def drop_project(project_name):
         logging.debug('Dropping project')
         server.drop_project(project_name)
 
+
 MODEL_ENGINE = 'openai'
 MODEL_NAME = 'text-davinci-003'
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+
 
 def get_model_names(project):
     logging.debug('Fetching models')
@@ -104,8 +109,9 @@ def create_model(project_name, model_name):
                 'prompt_template': '''
                 Reply like a friend who cares and wants to help.
                 Input message: {{text}} 
-                In less than 550 characters, when there's some sign of distress provide a  Share healthy habits, motivational quotes, inspirational
-                real-life stories. Provide options to seek out in-person help if you aren't able to satisfy.  
+                In less than 550 characters, when there's some sign of distress in the input share healthy habits, 
+                motivational quotes, inspirational real-life stories. 
+                Provide options to seek out in-person help if you aren't able to satisfy.  
                     ''',
                 'max_tokens': 300
             }
