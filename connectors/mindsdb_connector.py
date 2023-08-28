@@ -111,7 +111,9 @@ def create_model(project_name, model_name):
                 Input message: {{text}} 
                 In less than 550 characters, when there's some sign of distress in the input share healthy habits, 
                 motivational quotes, inspirational real-life stories. 
-                Provide options to seek out in-person help if you aren't able to satisfy.  
+                Provide options to seek out in-person help if you aren't able to satisfy. 
+                Keep the conversation going by asking them to share more. Be a good listener and conversationalist. 
+                In case there's no signs of distress then reply casually like how you would engage in conversation. 
                     ''',
                 'max_tokens': 300
             }
