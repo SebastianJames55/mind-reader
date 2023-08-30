@@ -11,34 +11,44 @@ def get_mindsdb_connection():
     return mindsdb_sdk.connect()
 
 
-DB_ENGINE = 'mysql'
-DB_NAME = 'mysql_demo_db'
+DB_ENGINE = 'yugabyte'
+DB_NAME_IN_MINDSDB = 'yugabyte_demo'
+DB_NAME_IN_SOURCE = 'demo'
+SCHEMA_NAME_IN_SOURCE = 'public'
 DB_CONNECTION_ARGS = {
-    "user": "user",
-    "password": "example",
-    "host": "db-demo-data.example.us-east-1.rds.amazonaws.com",
-    "port": "3306",
-    "database": "public"
+    "user": os.environ.get('DB_USER'),
+    "password": os.environ.get('DB_PASSWORD'),
+    "host": os.environ.get('DB_HOST'),
+    "port": os.environ.get('DB_PORT'),
+    "database": DB_NAME_IN_SOURCE,
+    "schema": SCHEMA_NAME_IN_SOURCE
 }
+
+
+def get_db_names(server):
+    logging.debug('Fetching db names')
+    return [db.name for db in server.list_databases()]
 
 
 def create_database(db_name):
     # Get the connection lazily
     server = get_mindsdb_connection()
-    if db_name not in server.list_databases():
-        mysql_demo_db = server.create_database(
+    if db_name not in get_db_names(server):
+        demo_db = server.create_database(
             engine=DB_ENGINE,
             name=db_name,
             connection_args=DB_CONNECTION_ARGS
         )
         logging.debug('Creating database')
-        return mysql_demo_db
+        return demo_db
+    else:
+        return get_database(db_name)
 
 
 def get_database(db_name):
     # Get the connection lazily
     server = get_mindsdb_connection()
-    if db_name in server.list_databases():
+    if db_name in get_db_names(server):
         logging.debug('Fetching database')
         return server.get_database(db_name)
 
@@ -46,7 +56,7 @@ def get_database(db_name):
 def drop_database(db_name):
     # Get the connection lazily
     server = get_mindsdb_connection()
-    if db_name in server.list_databases():
+    if db_name in get_db_names(server):
         logging.debug('Dropping database')
         server.drop_database(db_name)
 
@@ -55,7 +65,7 @@ PROJECT_NAME = 'mind_reader_project'
 
 
 def get_project_names(server):
-    logging.debug('Fetching projects')
+    logging.debug('Fetching project names')
     return [project.name for project in server.list_projects()]
 
 
@@ -111,7 +121,9 @@ def create_model(project_name, model_name):
                 Input message: {{text}} 
                 In less than 550 characters, when there's some sign of distress in the input share healthy habits, 
                 motivational quotes, inspirational real-life stories. 
-                Provide options to seek out in-person help if you aren't able to satisfy.  
+                Provide options to seek out in-person help if you aren't able to satisfy. 
+                Keep the conversation going by asking them to share more. Be a good listener and conversationalist. 
+                In case there's no signs of distress then reply casually like how you would engage in conversation. 
                     ''',
                 'max_tokens': 300
             }
