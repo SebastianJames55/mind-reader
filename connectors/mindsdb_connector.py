@@ -34,13 +34,13 @@ def create_database(db_name):
     # Get the connection lazily
     server = get_mindsdb_connection()
     if db_name not in get_db_names(server):
-        mysql_demo_db = server.create_database(
+        demo_db = server.create_database(
             engine=DB_ENGINE,
             name=db_name,
             connection_args=DB_CONNECTION_ARGS
         )
         logging.debug('Creating database')
-        return mysql_demo_db
+        return demo_db
     else:
         return get_database(db_name)
 
