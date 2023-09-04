@@ -1,27 +1,30 @@
 import unittest
-from connectors.mindsdb_connector import drop_project, drop_model, create_project, drop_database, create_database
 
+from connectors.mindsdb.database.chat_db import ChatDB
+from connectors.mindsdb.project.gpt_model import GPTModel
+from connectors.mindsdb.project.mind_reader_project import MindReaderProject
 
-PROJECT_NAME = 'mind-reader-project'
 DB_NAME_IN_MINDSDB = 'yugabyte_demo'
+project = MindReaderProject()
+db = ChatDB()
+chat_model = GPTModel()
 
 
 class TestMindsDBConnector(unittest.TestCase):
     def test_create_db(self):
-        create_database(DB_NAME_IN_MINDSDB)
+        db.create_database(DB_NAME_IN_MINDSDB)
 
     def test_drop_db(self):
-        drop_database(DB_NAME_IN_MINDSDB)
+        db.drop_database(DB_NAME_IN_MINDSDB)
 
     def test_create_project(self):
-        create_project(PROJECT_NAME)
+        project.create_project()
 
     def test_drop_project(self):
-        drop_project(PROJECT_NAME)
+        project.drop_project()
 
     def test_drop_model(self):
-        model_name = 'gpt_model'
-        drop_model(PROJECT_NAME, model_name)
+        chat_model.drop_model()
 
 
 if __name__ == '__main__':
