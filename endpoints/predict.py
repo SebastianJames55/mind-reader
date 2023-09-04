@@ -27,7 +27,7 @@ class Predict(Resource):
             request_message = data.get('request_message')
 
             # Make predictions using the connector and model
-            prediction = g.connector.predict(request_message)
+            prediction = g.model.predict(request_message)
             prediction_dict = prediction.to_dict(orient='records')
             return prediction_dict, 200
 
