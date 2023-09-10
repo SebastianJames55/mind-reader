@@ -5,11 +5,14 @@ Mind-reader is an app built using [mindsdb](https://mindsdb.com/). The app aims 
 
 ## Local Setup
 - [Get an OpenAI API key](https://www.howtogeek.com/885918/how-to-get-an-openai-api-key/)
-- [Set up mindsdb locally](https://docs.mindsdb.com/setup/self-hosted/pip/source)
-  - Since `mind-reader` relies on OpenAI, additionally install the dependencies at `mindsdb/integrations/handlers/openai_handler/requirements.txt` for the `mindsdb` setup
+- [Set up mindsdb locally](https://docs.mindsdb.com/setup/self-hosted/pip/source) & make sure the server is up
+  - `mind-reader` relies on OpenAI. So, for the `mindsdb` setup, additionally install the dependencies at `mindsdb/integrations/handlers/openai_handler/requirements.txt` 
 - Clone the mind-reader repo: `git clone https://github.com/SebastianJames55/mind-reader.git`  
 
-- Create a new virtual env (recommended): `python -m venv mind-reader-venv`  
+- Create a new [virtual environment](https://www.geeksforgeeks.org/python-virtual-environment/) (recommended)
+
+  Following are the steps to follow on Windows  
+  Create virtual environment: `python -m venv mind-reader-venv`  
   
   Create a file `venv_vars.bat` in `\mind-reader-venv\Scripts\`.  
   In `venv_var.bat` add the following:
@@ -28,7 +31,7 @@ Mind-reader is an app built using [mindsdb](https://mindsdb.com/). The app aims 
   ![Chat input](assets/simple%20rq.PNG)  
   
   ![Chat reply](assets/good%20rs.PNG)  
-- Please refer to the [demo](https://drive.google.com/file/d/1mCg1FvpvDlPAGw6H0j8hxLnBW7YeD3kS/view?usp=sharing) for more details on the idea and implementation
+- Please refer to the [demo](https://www.youtube.com/watch?v=qmnaoTaws3w) & [article](https://sebastianjames.hashnode.dev/mind-reader-your-buddy-to-chat-with-when-you-are-on-a-low) for more details on the idea and implementation
 
 ### Additional Info
 - API documentation included for the ```/api/v1/predict``` endpoint using Flask-RESTx. 
