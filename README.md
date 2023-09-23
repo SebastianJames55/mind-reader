@@ -5,8 +5,9 @@ Mind-reader is an app built using [mindsdb](https://mindsdb.com/). The app aims 
 
 ## Local Setup
 - [Get an OpenAI API key](https://www.howtogeek.com/885918/how-to-get-an-openai-api-key/)
-- [Set up mindsdb locally](https://docs.mindsdb.com/setup/self-hosted/pip/source) & make sure the server is up
-  - `mind-reader` relies on OpenAI. So, for the `mindsdb` setup, additionally install the dependencies at `mindsdb/integrations/handlers/openai_handler/requirements.txt` 
+- [Set up mindsdb locally](https://docs.mindsdb.com/setup/self-hosted/pip/source)
+  - `mind-reader` relies on OpenAI. So, for the `mindsdb` setup, additionally install the dependencies at `mindsdb/integrations/handlers/openai_handler/requirements.txt`
+  - Start the server: `python -m mindsdb`
 - Clone the mind-reader repo: `git clone https://github.com/SebastianJames55/mind-reader.git`  
 
 - Create a new [virtual environment](https://www.geeksforgeeks.org/python-virtual-environment/) (recommended)
