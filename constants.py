@@ -2,4 +2,4 @@
 MINDSDB = 'mindsdb'
 
 # Messages
-INVALID_APP_MESSAGE = 'Invalid app specified in config.py'
+INVALID_APP_MESSAGE = 'Invalid app specified in general.py'

@@ -1,9 +1,13 @@
 from flask import jsonify, g
 from flask_restx import Resource, fields, Namespace
 
+from config.general import PROJECT_NAME
+from config.model import MODEL_NAME_IN_CONNECTOR
+from mindsdb.utils import get_project
+
 predict_ns = Namespace('predict', description='Prediction operations')
 
-resource_model = predict_ns.model('RequestModel', {
+request_model = predict_ns.model('RequestModel', {
     'request_message': fields.String(description='Message to get reply to', required=True),
 })
 
@@ -15,7 +19,7 @@ response_model = predict_ns.model('ResponseModel', {
 
 class Predict(Resource):
     @predict_ns.doc('predict')
-    @predict_ns.expect(resource_model, validate=True)
+    @predict_ns.expect(request_model, validate=True)
     @predict_ns.response(200, 'Success', response_model)
     def post(self):
         """
@@ -27,7 +31,14 @@ class Predict(Resource):
             request_message = data.get('request_message')
 
             # Make predictions using the connector and model
-            prediction = g.model.predict(request_message)
+            prediction_query = f'''
+                SELECT response
+                FROM {PROJECT_NAME}.{MODEL_NAME_IN_CONNECTOR}
+                WHERE text = "{request_message}";
+            '''
+            # Query on the model in the project to make predictions based on data
+            query = get_project().query(prediction_query)
+            prediction = query.fetch()
             prediction_dict = prediction.to_dict(orient='records')
             return prediction_dict, 200
 
