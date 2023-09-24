@@ -2,7 +2,7 @@ import mindsdb_sdk
 from config.general import *
 
 
-server = mindsdb_sdk.connect()
+server = mindsdb_sdk.connect(login=MINDSDB_EMAIL, password=MINDSDB_PASSWORD)
 
 
 def get_project():
