@@ -58,3 +58,7 @@ node_modules
 
 
 *.xml
+.replit
+poetry.lock
+pyproject.toml
+replit.nix
