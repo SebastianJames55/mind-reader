@@ -37,9 +37,9 @@ def initialize():
             'max_tokens': 300
         }
     )
-    server.get_database(DB_NAME_IN_CONNECTOR) if is_db_created(DB_NAME_IN_CONNECTOR) else server \
-        .create_database(
-        engine=DB_ENGINE,
-        name=DB_NAME_IN_CONNECTOR,
-        connection_args=DB_CONNECTION_ARGS
-    )
+    # server.get_database(DB_NAME_IN_CONNECTOR) if is_db_created(DB_NAME_IN_CONNECTOR) else server \
+    #     .create_database(
+    #     engine=DB_ENGINE,
+    #     name=DB_NAME_IN_CONNECTOR,
+    #     connection_args=DB_CONNECTION_ARGS
+    # )
