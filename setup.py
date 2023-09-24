@@ -3,7 +3,7 @@ from flask import Flask
 from config.model import *
 from config.general import PROJECT_NAME
 from config.database import *
-from mindsdb.utils import server, is_project_created, is_model_created, is_db_created
+from utils import server, is_project_created, is_model_created, is_db_created
 
 app = Flask(__name__)
 
