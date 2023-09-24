@@ -3,7 +3,7 @@ from flask_restx import Resource, fields, Namespace
 
 from config.general import PROJECT_NAME
 from config.model import MODEL_NAME_IN_CONNECTOR
-from mindsdb.utils import get_project
+from utils import get_project
 
 predict_ns = Namespace('predict', description='Prediction operations')
 
